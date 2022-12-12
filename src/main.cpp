@@ -122,7 +122,6 @@ MyCommandParser parser;
 // Command Handler Prototypes
 void cmd_interval(MyCommandParser::Argument *args, char *response);
 void cmd_hello(MyCommandParser::Argument *args, char *response);
-void cmd_helloecho(MyCommandParser::Argument *args, char *response);
 void cmd_reset(MyCommandParser::Argument *args, char *response);
 // Create an object of the class Bsec
 Bsec iaqSensor;
@@ -209,17 +208,6 @@ void cmd_interval(MyCommandParser::Argument *args, char *response) {
   }
   msgStr.toCharArray(response, MyCommandParser::MAX_RESPONSE_SIZE);
 }
-
-/************************************************************
- * Command "helloecho STRING"
- * - Return: `[STRING]` 
- ************************************************************/ 
-void cmd_helloecho(MyCommandParser::Argument *args, char *response) {      
-  String msgStr;  
-  msgStr = String(args[0].asString);  
-  msgStr.toCharArray(response, MyCommandParser::MAX_RESPONSE_SIZE);
-}
-
 
 /************************************************************
  * Command "reset"
@@ -808,8 +796,7 @@ void setup(void) {
   //            <size_t COMMANDS = 16, size_t COMMAND_ARGS = 4, size_t COMMAND_NAME_LENGTH = 10,
   //             size_t COMMAND_ARG_SIZE = 32, size_t RESPONSE_SIZE = 64>
   parser.registerCommand("hello", "", &cmd_hello);               // hello
-  parser.registerCommand("interval", "u", &cmd_interval);        // interval [SECONDS]
-  parser.registerCommand("helloecho", "s", &cmd_helloecho);      // helloecho [STRING]
+  parser.registerCommand("interval", "u", &cmd_interval);        // interval [SECONDS]  
   parser.registerCommand("reset", "", &cmd_reset);               // reset
   
   // BME680    
