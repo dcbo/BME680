@@ -769,9 +769,9 @@ void setup(void) {
   // Serial Port
   Serial.begin(115200);  
   DBG.println("");
-  DBG.println("################################");
-  DBG.println("### Darios ESP32 Hello-World ###");
-  DBG.println("################################");  
+  DBG.println("#######################################");
+  DBG.println("### Darios ESP32 BME688 MQTT Sensor ###");
+  DBG.println("#######################################");  
   DBG.println("Version: " + String(VERSION));
   DBG.println("Target: " + String(TARGET));
   DBG.println("Build timestamp: " + String(BUILD_TIMESTAMP));
