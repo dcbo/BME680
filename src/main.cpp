@@ -66,12 +66,20 @@
 #ifndef TARGET
   #define TARGET "UNKNOWN"
 #endif
+#ifndef  MQTT_SERVER    
+  #define MQTT_SERVER "mqtt.example.de"
+#endif
+#ifndef  MQTT_PORT
+  #define MQTT_PORT 1883
+#endif
+#ifndef  MQTT_USER
+  #define MQTT_USER ""
+#endif
+#ifndef  MQTT_PASS
+  #define MQTT_PASS ""
+#endif
 
 // MQTT-Connection Settings
-#define MQTT_SERVER    "mqtt.ohs42.de"            // IP or Name of MQTT-Server
-#define MQTT_PORT      1883                       // Port of MQTT-Server  
-#define MQTT_USER      ""                         // MQTT-Username
-#define MQTT_PASS      ""                         // MQTT-Password
 #define MQTT_BUFSIZE   2048                       // MQTT-Buffersize (may be augmented, when Scan returns many BLE-Devices
 // Topic used to subscribe, MQTT_PREFIX will be added
 #define T_CMD          "cmd"                      // Topic for Commands (subscribe) (MQTT_PREFIX will be added)
@@ -629,7 +637,7 @@ void setupMQTT(void) {
   String myClientID;
   myClientID = composeClientID();
   DBG_SETUP.println("Connecting to MQTT-Server ... ");
-  DBG_SETUP.println("  - ClientID:");
+  DBG_SETUP.print("  - ClientID: ");
   DBG_SETUP.println(myClientID);  
   if (mqtt.connect(myClientID.c_str(), MQTT_USER, MQTT_PASS, MQTT_PREFIX "/" T_STATUS, 1, true, STATUS_MSG_OFF, true))  { 
     DBG_SETUP.println("  - Register Callback");
